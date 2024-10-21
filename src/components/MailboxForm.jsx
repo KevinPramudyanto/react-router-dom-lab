@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
-const MailboxForm = () => {
-  return <div></div>;
+const MailboxForm = (props) => {
+  const [boxholder, setBoxholder] = useState("");
+  const [boxSize, setBoxSize] = useState("Small");
+
+  const handleBoxholderChange = (event) => setBoxholder(event.target.value);
+  const handleBoxSizeChange = (event) => setBoxSize(event.target.value);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.addBox(boxholder, boxSize);
+    setBoxholder("");
+    setBoxSize("Small");
+  };
+
+  return (
+    <>
+      <h1>Mailbox List</h1>
+      <form onSubmit={handleSubmit}>
+        <h3>Enter a Boxholder:</h3>
+        <input
+          name="boxholder"
+          value={boxholder}
+          onChange={handleBoxholderChange}
+        />
+        <h3>Select a Box Size:</h3>
+        <select name="boxsize" value={boxSize} onChange={handleBoxSizeChange}>
+          <option value="Small">Small</option>
+          <option value="Medium">Medium</option>
+          <option value="Large">Large</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </>
+  );
 };
 
 export default MailboxForm;
