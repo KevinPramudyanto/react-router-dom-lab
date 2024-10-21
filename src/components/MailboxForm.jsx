@@ -20,7 +20,7 @@ const MailboxForm = (props) => {
   return (
     <>
       <h1>New Mailbox</h1>
-      <form action="/mailboxes" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h3>Enter a Boxholder:</h3>
         <input
           name="boxholder"
