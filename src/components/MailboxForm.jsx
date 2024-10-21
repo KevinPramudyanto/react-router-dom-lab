@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MailboxForm = (props) => {
   const [boxholder, setBoxholder] = useState("");
   const [boxSize, setBoxSize] = useState("Small");
+  const navigate = useNavigate();
 
   const handleBoxholderChange = (event) => setBoxholder(event.target.value);
   const handleBoxSizeChange = (event) => setBoxSize(event.target.value);
@@ -12,15 +14,17 @@ const MailboxForm = (props) => {
     props.addBox(boxholder, boxSize);
     setBoxholder("");
     setBoxSize("Small");
+    navigate("/mailboxes");
   };
 
   return (
     <>
-      <h1>Mailbox List</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>New Mailbox</h1>
+      <form action="/mailboxes" onSubmit={handleSubmit}>
         <h3>Enter a Boxholder:</h3>
         <input
           name="boxholder"
+          placeholder="Boxholder name"
           value={boxholder}
           onChange={handleBoxholderChange}
         />

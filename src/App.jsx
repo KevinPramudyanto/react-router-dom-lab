@@ -7,23 +7,7 @@ import MailboxDetails from "./components/MailboxDetails";
 import NavBar from "./components/NavBar";
 
 const App = () => {
-  const [mailboxes, setMailboxes] = useState([
-    {
-      _id: 1,
-      boxSize: "Small",
-      boxholder: "Alex",
-    },
-    {
-      _id: 2,
-      boxSize: "Medium",
-      boxholder: "Beta",
-    },
-    {
-      _id: 3,
-      boxSize: "Large",
-      boxholder: "Charlie",
-    },
-  ]);
+  const [mailboxes, setMailboxes] = useState([]);
 
   const addBox = (boxholder, boxSize) =>
     setMailboxes((prevMailboxes) => [
@@ -52,6 +36,7 @@ const App = () => {
           path="/mailboxes/:mailboxId"
           element={<MailboxDetails mailboxes={mailboxes} />}
         />
+        <Route path="*" element={<h1>Not Found!</h1>} />
       </Routes>
     </>
   );
